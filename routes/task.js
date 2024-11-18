@@ -1,12 +1,12 @@
 const express = require('express');
 const router = express.Router();
 let mongoose = require('mongoose');
-let taskCreate = require('../model/taskCreate'); // Single import for taskCreate
+let Tasks = require('../model/Tasks'); // Single import for Tasks
 
 /* GET users tasks */
 router.get('/', async (req, res) => {
   try {
-    const currenttasks = await taskCreate.find();
+    const currenttasks = await Tasks.find();
     res.render('task', { title: 'Tasks', currenttasks });
   } catch (err) {
     console.error(err);
@@ -22,7 +22,7 @@ router.get('/add', (req, res) => {
 /* POST add task */
 router.post('/add', async (req, res) => {
   try {
-    let newTask = new taskCreate({
+    let newTask = new Tasks({
       description: req.body.description,
       due_by: req.body.due_by,
       name_task: req.body.name_task,
@@ -42,13 +42,13 @@ router.post('/add', async (req, res) => {
 router.get('/edit/:id', async (req, res) => {
   try {
     const id = req.params.id;
-    const editTask = await taskCreate.findById(id);
+    const editTask = await Tasks.findById(id);
     if (!editTask) {
       return res.status(404).send('Task not found');
     }
     res.render('Tasks/edit', {
       title: 'Edit Task',
-      task: editTask, // Changed 'taskCreate' to 'task' for clarity
+      task: editTask, // Changed 'Tasks' to 'task' for clarity
     });
   } catch (err) {
     console.error(err);
@@ -67,10 +67,24 @@ router.post('/edit/:id', async (req, res) => {
       name_task: req.body.name_task,
     };
 
-    await taskCreate.findByIdAndUpdate(id, updatedTask);
+    await Tasks.findByIdAndUpdate(id, updatedTask);
     res.redirect('/tasks');
   } catch (err) {
     console.error(err);
+    res.status(500).render('Tasks/list', {
+      error: 'Error on the server',
+    });
+  }
+});
+
+/* GET delete task */
+router.get('/delete/:id', async (req, res, next) => {
+  try {
+    const id = req.params.id;
+    await Tasks.deleteOne({ _id: id });
+    res.redirect('/tasks'); // Redirect to the tasks list after deletion
+  } catch (error) {
+    console.error(error); // Consistent variable usage
     res.status(500).render('Tasks/list', {
       error: 'Error on the server',
     });

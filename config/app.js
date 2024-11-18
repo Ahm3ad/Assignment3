@@ -5,7 +5,7 @@ let cookieParser = require('cookie-parser');
 let logger = require('morgan');
 
 let indexRouter = require('../routes/index');
-let stockRouter = require('../routes/stock')
+let stockRouter = require('../routes/task')
 
 let app = express();
 let mongoose = require('mongoose');
