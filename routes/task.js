@@ -6,10 +6,10 @@ let Tasks = require('../model/Tasks'); // Single import for Tasks
 /* GET users tasks */
 router.get('/', async (req, res) => {
   try {
-    res.render('task', { title: 'Tasks' });
+    const tasks = await Tasks.find(); // Fetch tasks from your database
+    res.render('task', { title: 'Tasks', tasks }); // Pass tasks to the EJS template
   } catch (err) {
-    console.error(err);
-    res.status(500).send('Server Error');
+    res.status(500).send(err);
   }
 });
 
