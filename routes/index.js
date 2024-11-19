@@ -6,8 +6,9 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Home' });
 });
 
-router.get('/tasks/add', function(req, res, next) {
-  res.render('add', { title: 'Add' });
+router.get('/Tasks/add', function(req, res, next) {
+  res.render('index', { title: 'Add' });
 });
+
 
 module.exports = router;

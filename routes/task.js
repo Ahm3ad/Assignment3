@@ -6,8 +6,7 @@ let Tasks = require('../model/Tasks'); // Single import for Tasks
 /* GET users tasks */
 router.get('/', async (req, res) => {
   try {
-    const currenttasks = await Tasks.find();
-    res.render('task', { title: 'Tasks', currenttasks });
+    res.render('task', { title: 'Tasks' });
   } catch (err) {
     console.error(err);
     res.status(500).send('Server Error');
