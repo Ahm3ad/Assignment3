@@ -1,5 +1,5 @@
-<%- include ../Partials/header.ejs%>
-<%- include ../Partials/nav.ejs%>
+<%- include('../Partials/header.ejs') %>
+<%- include('../Partials/nav.ejs') %>
 <!--Content for Add Page-->
 <div class="container">
     <div class="row">
@@ -8,24 +8,44 @@
             <form class="form" method="POST">
                 <div class="form-group">
                     <label for="descriptionTextField">Description</label>
-                    <input type="text" class="form-control" id="descriptionTextField" placeholder="Enter the description" name="description" required>
+                    <input
+                        type="text"
+                        class="form-control"
+                        id="descriptionTextField"
+                        placeholder="Enter the description"
+                        name="description"
+                        required
+                    />
                 </div>
                 <div class="form-group">
-                    <label for="itemTextField">Item</label>
-                    <input type="text" class="form-control" id="itemTextField" placeholder="Enter the Item name" name="item" required>
+                    <label for="nameTextField">Name</label>
+                    <input
+                        type="text"
+                        class="form-control"
+                        id="nameTextField"
+                        placeholder="Enter the Task name"
+                        name="name_task"
+                        required
+                    />
                 </div>
                 <div class="form-group">
-                    <label for="priceTextField">Task</label>
-                    <input type="text" class="form-control" id="priceTextField" placeholder="Enter the Task" name="Task" required>
+                    <label for="dueDateField">Due Date</label>
+                    <input
+                        type="date"
+                        class="form-control"
+                        id="dueDateField"
+                        name="due_by"
+                        required
+                    />
                 </div>
-                <button class="btn btn-primary" type="submit">Submit
-                    <i class="fas fa-edit"></i>
-                </button>  
-                <button class="btn btn-warning" type="submit">Cancel
-                    <i class="fas fa-undo"></i>
-                </button>    
+                <button class="btn btn-primary" type="submit">
+                    Submit <i class="fas fa-edit"></i>
+                </button>
+                <a class="btn btn-warning" href="/tasks">
+                    Cancel <i class="fas fa-undo"></i>
+                </a>
             </form>
         </div>
     </div>
 </div>
-<%- include ../Partials/footer.ejs%>
+<%- include('../Partials/footer.ejs') %>

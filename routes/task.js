@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 let mongoose = require('mongoose');
 let Tasks = require('../model/Tasks'); // Single import for Tasks
+const { ObjectId } = require('mongodb');
 
 /* GET users tasks */
 router.get('/', async (req, res) => {
@@ -15,8 +16,9 @@ router.get('/', async (req, res) => {
 
 /* GET add task form */
 router.get('/add', (req, res) => {
-  res.render('Tasks/add'); // Render the form page for adding a task
+  res.render('Tasks/add', { title: 'Add Task' }); 
 });
+
 
 /* POST add task */
 router.post('/add', async (req, res) => {
@@ -41,13 +43,19 @@ router.post('/add', async (req, res) => {
 router.get('/edit/:id', async (req, res) => {
   try {
     const id = req.params.id;
+
+    if (!ObjectId.isValid(id)) {
+      return res.status(400).send('Invalid Task ID');
+    }
+
     const editTask = await Tasks.findById(id);
     if (!editTask) {
       return res.status(404).send('Task not found');
     }
+
     res.render('Tasks/edit', {
       title: 'Edit Task',
-      task: editTask, // Changed 'Tasks' to 'task' for clarity
+      task: editTask,
     });
   } catch (err) {
     console.error(err);
@@ -70,7 +78,7 @@ router.post('/edit/:id', async (req, res) => {
     res.redirect('/tasks');
   } catch (err) {
     console.error(err);
-    res.status(500).render('Tasks/list', {
+    res.status(500).render('task', { 
       error: 'Error on the server',
     });
   }

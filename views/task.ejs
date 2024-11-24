@@ -3,14 +3,13 @@
 <div class="container mt-4">
     <h1>Task List</h1>
     <a href="/Tasks/add" class="btn btn-primary" role="button">Add Task</a>
-    
+
     <table class="table table-bordered mt-3">
       <thead>
         <tr>
           <th>Description</th>
           <th>Due By</th>
-          <th>Price</th>
-          <th>Actions</th>
+          <th>Task</th>
         </tr>
       </thead>
       <tbody>
@@ -18,7 +17,7 @@
           <tr>
             <td><%= task.description %></td> <!-- Access description -->
             <td><%= task.due_by %></td> <!-- Access due_by -->
-            <td><%= task.price %></td> <!-- Access price -->
+            <td><%= task.name_task %></td>
             <td>
               <!-- Edit button -->
               <a href="/Tasks/edit/<%= task._id %>" class="btn btn-primary">Edit</a>
