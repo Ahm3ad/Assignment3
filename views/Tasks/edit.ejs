@@ -12,15 +12,15 @@
                     <input type="text" class="form-control" id="descriptionTextField" placeholder="Enter the Description" name="description" value="<%= task.description %>" required>
                 </div>
                 <div class="form-group">
-                    <label for="itemTextField">Item</label>
-                    <input type="text" class="form-control" id="itemTextField" placeholder="Enter the Item name" name="item" value="<%= task.item %>" required>
+                    <label for="nameTextField">Item</label>
+                    <input type="text" class="form-control" id="nameTextField" placeholder="Enter the task name" name="Task" value="<%= task.name_task %>" required>
                 </div>
                 <div class="form-group">
-                    <label for="priceTextField">Price</label>
-                    <input type="text" class="form-control" id="priceTextField" placeholder="Enter the price" name="price" value="<%= task.price %>" required>
+                    <label for="duebyTextField">Price</label>
+                    <input type="text" class="form-control" id="duebyTextField" placeholder="Enter the price" name="Due" value="<%= task.due_by %>" required>
                 </div>
                 <button class="btn btn-primary" type="submit">Submit <i class="fas fa-edit"></i></button>  
-                <a href="/tasks" class="btn btn-warning">Cancel <i class="fas fa-undo"></i></a>    
+                <a href="/task" class="btn btn-warning">Cancel <i class="fas fa-undo"></i></a>    
             </form>
         </div>
     </div>

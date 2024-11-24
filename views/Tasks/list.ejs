@@ -1,0 +1,49 @@
+<%- include ../Partials/header.ejs %>
+<%- include ../Partials/nav.ejs %>
+
+<main class="container">
+    <div class="row">
+        <div class="offset-md-1 col-md-10">
+            <h1><%= title %></h1>
+            <br>
+            <a href="/tasks/add" class="btn btn-primary" role="button">
+                <i class="fas fa-plus-circle"></i> Add Task
+            </a>
+            <table class="table table-bordered table-striped table-hover mt-4">
+                <thead>
+                    <tr class="d-flex">
+                        <th class="text-center col-3">Description</th>
+                        <th class="text-center col-3">Name of Task</th>
+                        <th class="text-center col-2">Due Date</th>
+                        <th class="text-center col-2">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% if (tasks && tasks.length > 0) { %>
+                        <% for (let count = 0; count < tasks.length; count++) { %>
+                            <tr class="d-flex">
+                                <td class="text-center col-3"><%= tasks[count].description %></td>
+                                <td class="text-center col-3"><%= tasks[count].name_task %></td>
+                                <td class="text-center col-2"><%= tasks[count].due_by %></td>
+                                <td class="text-center col-2">
+                                    <a href="/tasks/edit/<%= tasks[count]._id %>" class="btn btn-primary btn-sm">
+                                        <i class="fas fa-pencil-alt"></i> Edit
+                                    </a>
+                                    <a href="/tasks/delete/<%= tasks[count]._id %>" class="btn btn-danger btn-sm">
+                                        <i class="fas fa-trash-alt"></i> Delete
+                                    </a>
+                                </td>
+                            </tr>
+                        <% } %>
+                    <% } else { %>
+                        <tr>
+                            <td colspan="4" class="text-center">No tasks found. Add a new task!</td>
+                        </tr>
+                    <% } %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</main>
+
+<%- include ../Partials/footer.ejs %>
